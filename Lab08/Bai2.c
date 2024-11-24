@@ -1,6 +1,6 @@
 #include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
+#include <string.h>   //Để sử dụng strlen()
+#include <stdlib.h>   //Để sử dụng system()
 
 #define MAX_STUDENTS 50
 
@@ -97,7 +97,7 @@ int main() {
         printf("\n\t\t||       [0] Exit the program.                                             ||");
         printf("\n\t\t=============================================================================");
 
-        printf("\n\n\t\tSelect the program you want to use from [0 -> 4]: ");
+        printf("\n\n\t\tSelect the program you want to use from [0 -> 3]: ");
 
         if (scanf("%d", &Select) != 1) {
             return 0;

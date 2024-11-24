@@ -26,41 +26,27 @@ void PrintLoanDetails(double Loan, double LoanTime, double InterestRate, double 
     double Total = 0, PrincipalPayable, InterestPayable, AmountPayable, RemainingAmount;
     int i;
 
-    //Loan = Tienvay
-    //LoanTime = Kyhan
-    //InterestRate = Laixuat
-
-    //InterestPayable = Laiphaitra
-    //PrincipalPayable = Tiengocphaitra
-    //AmountPayable = Tienphaitra
-    //Remaining Amount = Tienconlai
-    
-    //AdvancePayment = Tientratruoc
-    //Số tiền vay sau khi trừ trả trước
+    // Số tiền vay sau khi trừ trả trước
     Loan -= AdvancePayment;
-    PrincipalPayable = Loan / LoanTime; //Gốc phải trả hàng tháng
+    PrincipalPayable = Loan / LoanTime; // Gốc phải trả hàng tháng
 
+    // In bảng tiêu đề
     printf("\n%-10s%-20s%-20s%-20s%-20s\n", "Month", "Interest Payable", "Principal Payable", "Amount Payable", "Remaining Amount");
     printf("-----------------------------------------------------------------------------------------\n");
 
     for (i = 1; i <= LoanTime; i++) {
-        InterestPayable = Loan * InterestRate; //Lãi suất dựa trên số dư nợ hiện tại
-
-        //Gốc phải trả trong tháng cuối cùng là toàn bộ số dư còn lại
-        if (i == LoanTime) {
-            PrincipalPayable = Loan;
-        }
-
+        InterestPayable = Loan * (InterestRate / 12); // Lãi suất hàng tháng
         AmountPayable = InterestPayable + PrincipalPayable;
         RemainingAmount = Loan - PrincipalPayable;
 
-        //In thông tin chi tiết từng tháng
+        // In thông tin chi tiết từng tháng
         printf("%-10d%-20.2lf%-20.2lf%-20.2lf%-20.2lf\n", i, InterestPayable, PrincipalPayable, AmountPayable, RemainingAmount);
 
-        Loan -= PrincipalPayable; //Cập nhật số dư nợ
-        Total += AmountPayable;   //Cộng tổng số tiền đã trả
+        Loan -= PrincipalPayable; // Cập nhật số dư nợ
+        Total += AmountPayable;   // Cộng tổng số tiền đã trả
     }
 
+    // Tổng kết
     printf("\nTotal amount payable: %.2lf VND\n", Total);
 }
 
@@ -145,51 +131,58 @@ void ChucNang2() {
 }
 
 void ChucNang3() {
-    int StartTime, EndTime, UseTime;
-    double Total;
-
-    printf("Hello this is !! FPOLY Karaoke !! store we open at 12:AM and close at 23:PM\n\n\n");
+    int StartTime, EndTime, UseTime, Valid = 0;
+    float Total = 0, BaseCost = 0, Discount = 0;
 
     do {
         //Nhập giờ bắt đầu và giờ kết thúc
+        printf("Hello this is !! FPOLY Karaoke !! store we open at 12:AM and close at 24:PM\n");
         printf("Please enter the number of hours you want to use!\n");
-        printf("Enter time start (12-23): ");
+        printf("Enter time start: ");
         scanf("%d", &StartTime);
-        printf("Enter time end (12-23): ");
+        printf("Enter time end: ");
         scanf("%d", &EndTime);
 
         //Kiểm tra giờ bắt đầu và giờ kết thúc có hợp lệ hay không
-        if (StartTime < 12 || StartTime > 23 || EndTime < 12 || EndTime > 23) {
-            printf("\n\n!! Enter error. Time must be between 12 and 23 !!\n\n\n");
-        } else if (EndTime <= StartTime) {
-            printf("\n\n!! Enter error. End time must be greater than start time !!\n\n\n");
+        if (StartTime < 12 || StartTime > 23 || EndTime < 12 || EndTime > 24 || EndTime <= StartTime) {
+            printf("Enter error. Start time must be less than end time and be within (12 - 24)\n");
+            Valid = 1; 
         } else {
-            //Dữ liệu hợp lệ, thoát khỏi vòng lặp
-            break;
+            Valid = 0; 
         }
-    } while (1); //Lặp lại cho đến khi dữ liệu hợp lệ
+    } while (Valid != 0);
 
     //Tính thời gian sử dụng
     UseTime = EndTime - StartTime;
 
-    //Tính chi phí cơ bản
+    // Tính thời gian sử dụng
+    UseTime = EndTime - StartTime;
+
+    // Tính chi phí cơ bản
     if (UseTime <= 3) {
-        Total = UseTime * 150000;
+        BaseCost = UseTime * 150000;
     } else {
-        Total = 3 * 150000 + (UseTime - 3) * 150000 * 0.7;
+        BaseCost = 3 * 150000 + (UseTime - 3) * 150000 * 0.7;
     }
 
-    //Áp dụng giảm giá nếu giờ bắt đầu trong khoảng 14-17
+    // Áp dụng giảm giá nếu giờ bắt đầu trong khoảng 14-17
     if (StartTime >= 14 && StartTime <= 17) {
-        Total = Total * 0.9; //Giảm thêm 10%
+        Discount = BaseCost * 0.1; // Giảm thêm 10%
     }
-    
+
+    // Tổng số tiền
+    Total = BaseCost - Discount;
     //In tổng tiền
-    printf("\n===== FPOLY Karaoke =====\n");
+    printf("\n--- Invoice Details ---\n");
     printf("Start Time: %d:00\n", StartTime);
     printf("End Time: %d:00\n", EndTime);
     printf("Usage Time: %d hour(s)\n", UseTime);
-    printf("Total payment : %.2lf VND\n", Total);
+    printf("Base Cost: %.2f VND\n", BaseCost);
+
+    if (Discount > 0) {
+        printf("Discount Applied (10%%): -%.2f VND\n", Discount);
+    }
+    printf("Total Bill: %.2f VND\n", Total);
 }
 
 void ChucNang4() {
@@ -255,28 +248,28 @@ void ChucNang5() {
 void ChucNang6() {
     double Loan = 0, LoanTime = 0, Interest = 0;
 
-    //Nhập số tiền vay
+    // Nhập số tiền vay
     printf("Enter the loan amount: ");
     if (scanf("%lf", &Loan) != 1 || Loan <= 0) {
         printf("Invalid loan amount.\n");
         return;
     }
 
-    //Nhập thời gian vay
+    // Nhập thời gian vay
     printf("Enter loan duration (1 to 60 months): ");
     if (scanf("%lf", &LoanTime) != 1 || LoanTime < 1 || LoanTime > 60) {
         printf("Invalid loan duration. Must be between 1 and 60 months.\n");
         return;
     }
 
-    //Nhập lãi suất
-    printf("Enter annual interest rate (basic is 0.05%%): ");
+    // Nhập lãi suất
+    printf("Enter annual interest rate (e.g., 5 for 5%%): ");
     if (scanf("%lf", &Interest) != 1 || Interest <= 0) {
         printf("Invalid interest rate.\n");
         return;
     }
 
-    //In bảng chi tiết khoản vay
+    // In bảng chi tiết khoản vay
     printf("\nLoan calculation without advance payment:\n");
     PrintLoanDetails(Loan, LoanTime, Interest, 0);
 }
@@ -284,39 +277,39 @@ void ChucNang6() {
 void ChucNang7() {
     double Loan = 0, LoanTime = 0, Interest = 0, PrepaymentPercentage = 0, AdvancePayment = 0;
 
-    //Nhập số tiền vay
+    // Nhập số tiền vay
     printf("Enter the loan amount: ");
     if (scanf("%lf", &Loan) != 1 || Loan <= 0) {
         printf("Invalid loan amount.\n");
         return;
     }
 
-    //Nhập thời gian vay
+    // Nhập thời gian vay
     printf("Enter loan duration (1 to 60 months): ");
     if (scanf("%lf", &LoanTime) != 1 || LoanTime < 1 || LoanTime > 60) {
         printf("Invalid loan duration. Must be between 1 and 60 months.\n");
         return;
     }
 
-    //Nhập lãi suất
-    printf("Enter annual interest rate (basic is 0.05%%): ");
+    // Nhập lãi suất
+    printf("Enter annual interest rate (e.g., 5 for 5%%): ");
     if (scanf("%lf", &Interest) != 1 || Interest <= 0) {
         printf("Invalid interest rate.\n");
         return;
     }
 
-    //Nhập phần trăm trả trước
-    printf("Enter prepayment percentage (basic is 0.072%%): ");
+    // Nhập phần trăm trả trước
+    printf("Enter prepayment percentage (e.g., 7.2 for 7.2%%): ");
     if (scanf("%lf", &PrepaymentPercentage) != 1 || PrepaymentPercentage < 0 || PrepaymentPercentage > 100) {
         printf("Invalid prepayment percentage. Must be between 0 and 100.\n");
         return;
     }
 
-    //Tính tiền trả trước
+    // Tính tiền trả trước
     AdvancePayment = Loan * (PrepaymentPercentage / 100);
     printf("\nAdvance payment: %.2lf VND\n", AdvancePayment);
 
-    //In bảng chi tiết khoản vay
+    // In bảng chi tiết khoản vay
     printf("\nLoan calculation with advance payment:\n");
     PrintLoanDetails(Loan, LoanTime, Interest, AdvancePayment);
 
@@ -333,12 +326,12 @@ void ChucNang8() {
     } 
 
     printf("\n\nScore Range | Rank\n");
-    printf("9.0 - 10.0  | EXCELLENT\n");
-    printf("8.0 - 8.9   | GREAT\n");
+    printf("9.0 - 10.0  | EXCELLENT!!\n");
+    printf("8.0 - 8.9   | GREAT!\n");
     printf("6.5 - 7.9   | GOOD\n");
     printf("5.0 - 6.4   | MIDDLE\n");
     printf("3.5 - 4.9   | WEAK\n");
-    printf("0.0 - 3.4   | LEAST\n\n\n");
+    printf("0.0 - 3.4   | LEAST\n");
 
     //In kết quả
     if (Score >= 9.0 && Score <= 10.0) {
@@ -471,12 +464,12 @@ void ChucNang10() {
 	mauD = mauX*tuY;
 
     //In ra kết quả
-    printf("\n\tAnswer\n");
-    printf("\t--------------------------------------------------------------------");
-    printf("\n\tTotal\t\tEffect\t\tMultiplication\t\tDivision");
-    printf("\n\t%g\t\t%g\t\t%g\t\t\t%g", tuA, tuB, tuC, tuD);
-    printf("\n\t---\t\t---\t\t---\t\t\t---");
-    printf("\n\t%g\t\t%g\t\t%g\t\t\t%g", mauA, mauB, mauC, mauD);
+    printf("\nAnswer\n");
+    printf("-----------------------------------------------------------");
+    printf("\nTotal\t\tEffect\t\tMultiplication\t\tDivision");
+    printf("\n%g\t\t%g\t\t%g\t\t\t%g", tuA, tuB, tuC, tuD);
+    printf("\n---\t\t---\t\t---\t\t\t---");
+    printf("\n%g\t\t%g\t\t%g\t\t\t%g", mauA, mauB, mauC, mauD);
 }
 
 void GioiThieu() {
@@ -516,7 +509,7 @@ void GioiThieu() {
 
     //Kiểm tra đầu vào người dùng với một vòng lặp để đảm bảo người dùng nhập giá trị hợp lệ.
     while (1) {
-        printf("\n\n\t\tSelect an option: ");
+        printf("\n\t\tSelect an option: ");
         if (scanf("%d", &select) != 1 || (select != 0 && select != 1)) {
             printf("\n\n\t\tInvalid input! Please enter 0 to exit or 1 to continue.\n\n");
         } else {

@@ -1,6 +1,6 @@
 #include <stdio.h>
-#include <string.h>
-#include <stdlib.h> 
+#include <string.h>   //Để sử dụng strlen()
+#include <stdlib.h>   //Để sử dụng system()
 
 #define MAX_STUDENTS 50
 
