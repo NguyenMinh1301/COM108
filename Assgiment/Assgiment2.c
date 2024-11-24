@@ -13,7 +13,7 @@ void ChucNang7();           //Vay Tiền mua xe
 void ChucNang8();           //Sắp xếp thông tin sinh viên
 void ChucNang9();           //FPOLY - LOTT
 void ChucNang10();          //Tính phân số
-void PrintLoanDetails();    //Hàm in chi tiết tiền nợ của 2 hàm ChucNang6() và ChucNang7()
+void PrintLoanDetails();    //Hàm tính toán và in chi tiết tiền nợ của 2 hàm ChucNang6() và ChucNang7()
 void GioiThieu();           //Giới thiệu trương trình
 void Menu();                //Menu lựa chon trương trình sử dụng
 
