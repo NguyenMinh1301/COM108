@@ -75,13 +75,13 @@ void ChucNang3 () {
     printf("\n\t\t=============================================================================");
     printf("\n\t\tInput number B: ");
     scanf("%d", &num2);  
-    {
+
     //Đổi vị trí cho 2 số qua trung gian là temp
-        int temp;
-        temp = num1;
-        num1 = num2;
-        num2 = temp;
-    }
+    int temp;
+    temp = num1;
+    num1 = num2;
+    num2 = temp;
+    
     //In ra kết quả
     printf("\n\t\t=============================================================================");
     printf("\n\t\tAfter converting A and B: A = %d || B = %d", num1, num2);

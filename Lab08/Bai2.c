@@ -11,14 +11,14 @@ struct SinhVien {
     float DiemTB;
 };
 
-// Hàm nhập thông tin sinh viên
+//Hàm nhập thông tin sinh viên
 void NhapSinhVien(struct SinhVien MangSV[], int *n) {
     int i;
 
     printf("\n\t\t=============================================================================\n");
     printf("\t\t\tEnter the number of students you want to save: ");
     scanf("%d", n);
-    getchar(); // Loại bỏ ký tự newline
+    getchar(); //Loại bỏ ký tự newline
 
     for (i = 0; i < *n; i++) {
         printf("\n\t\t=============================================================================\n");
@@ -26,7 +26,7 @@ void NhapSinhVien(struct SinhVien MangSV[], int *n) {
 
         printf("\t\tID: ");
         fgets(MangSV[i].Mssv, sizeof(MangSV[i].Mssv), stdin);
-        MangSV[i].Mssv[strcspn(MangSV[i].Mssv, "\n")] = '\0'; // Loại bỏ ký tự newline
+        MangSV[i].Mssv[strcspn(MangSV[i].Mssv, "\n")] = '\0'; //Loại bỏ ký tự newline
 
         printf("\t\tStudent name: ");
         fgets(MangSV[i].TenSv, sizeof(MangSV[i].TenSv), stdin);
@@ -42,7 +42,7 @@ void NhapSinhVien(struct SinhVien MangSV[], int *n) {
     }
 }
 
-// Hàm hiển thị thông tin sinh viên
+//Hàm hiển thị thông tin sinh viên
 void HienThiThongTin(struct SinhVien MangSV[], int n) {
     int i;
 
@@ -59,7 +59,7 @@ void HienThiThongTin(struct SinhVien MangSV[], int n) {
     }
 }
 
-// Hàm sắp xếp sinh viên theo điểm trung bình
+//Hàm sắp xếp sinh viên theo điểm trung bình
 void SapXepSinhVien(struct SinhVien MangSV[], int n) {
     int i, j;
 

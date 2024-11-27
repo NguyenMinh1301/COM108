@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-// Hàm tính trung bình của các số chia hết cho 3
+//Hàm tính trung bình của các số chia hết cho 3
 void ChucNang1() {
     int n;
 
@@ -9,7 +9,7 @@ void ChucNang1() {
     printf("\n\t\t\tEnter the number of elements in the array: ");
     scanf("%d", &n);
 
-    // Kiểm tra điều kiện hợp lệ cho n
+    //Kiểm tra điều kiện hợp lệ cho n
     if (n <= 0) {
         printf("\n\t\t\tInvalid number of elements. Please enter a positive integer.\n");
         return;
@@ -26,7 +26,7 @@ void ChucNang1() {
     float average;
     int count = 0;
 
-    // Tính trung bình tổng của những số chia hết cho 3
+    //Tính trung bình tổng của những số chia hết cho 3
     for(i = 0; i < n; i++) {
         if(arr[i] % 3 == 0) {
             sum += arr[i];
@@ -46,7 +46,7 @@ void ChucNang1() {
     }
 }
 
-// Hàm tìm giá trị lớn nhất trong mảng
+//Hàm tìm giá trị lớn nhất trong mảng
 void ChucNang2 () {
     int n;
 
@@ -62,27 +62,27 @@ void ChucNang2 () {
     int mang[n];  
     int i;
     
-    // Nhập dữ liệu vào mảng
+    //Nhập dữ liệu vào mảng
     for (i = 0; i < n; i++) {
         printf("\n\t\t\tPlease enter data for the array: ");
         scanf("%d", &mang[i]);
     }
     
     int max = mang[0];
-    // Tìm giá trị lớn nhất trong mảng
+    //Tìm giá trị lớn nhất trong mảng
     for (i = 1; i < n; i++) {
         if (mang[i] > max) {
             max = mang[i];
         }
     }
 
-    // In ra giá trị lớn nhất
+    //In ra giá trị lớn nhất
     printf("\n\t\t=============================================================================");
     printf("\n\t\t\tThe largest value is: %d\n", max);
     printf("\n\t\t=============================================================================");
 }
 
-// Hàm sắp xếp mảng theo thứ tự giảm dần
+//Hàm sắp xếp mảng theo thứ tự giảm dần
 void ChucNang3 () {
     int n;
 
@@ -98,14 +98,14 @@ void ChucNang3 () {
     int arr[n];  
     int i, j;
 
-    // Nhập dữ liệu vào mảng
+    //Nhập dữ liệu vào mảng
     for(i = 0; i < n; i++) {
         printf("\n\t\t=============================================================================");
         printf("\n\t\t\tPlease enter a value for the array: ");
         scanf("%d", &arr[i]);     
     }
 
-    // Sắp xếp mảng theo thứ tự giảm dần (Bubble sort)
+    //Sắp xếp mảng theo thứ tự giảm dần (Bubble sort)
     for(i = 0; i < n - 1; i++) {
         for(j = 0; j < n - i - 1; j++) {
             if (arr[j] < arr[j + 1]) {
@@ -116,7 +116,7 @@ void ChucNang3 () {
         }
     }
 
-    // In ra mảng sau khi sắp xếp
+    //In ra mảng sau khi sắp xếp
     printf("\n\t\t=============================================================================");
     printf("\n\t\t\tArray after sorting:\n");
     for(i = 0; i < n; i++) {
@@ -124,7 +124,7 @@ void ChucNang3 () {
     }
 }
 
-// Hàm xử lý mảng 2 chiều
+//Hàm xử lý mảng 2 chiều
 void ChucNang4 () {
     int column1, column2;
 
@@ -143,7 +143,7 @@ void ChucNang4 () {
     int arr[column1][column2];
     int i, j;
     
-    // Nhập dữ liệu vào ma trận 2 chiều
+    //Nhập dữ liệu vào ma trận 2 chiều
     for (i = 0; i < column1; i++) {
         for (j = 0; j < column2; j++) {
             printf("\n\t\t\tEnter value into matrix [%d][%d]: ", i, j);
@@ -151,7 +151,7 @@ void ChucNang4 () {
         }
     }
     
-    // In ra ma trận 2 chiều
+    //In ra ma trận 2 chiều
     printf("\n\t\t=============================================================================");
     printf("\n\t\t\tThe matrix you entered is:\n");
     for (i = 0; i < column1; i++) {
