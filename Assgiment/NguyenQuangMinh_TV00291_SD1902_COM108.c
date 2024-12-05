@@ -22,6 +22,7 @@ int main () {
     return 0;
 }
 
+//Hàm tính toán và in chi tiết tiền nợ của 2 hàm ChucNang6() và ChucNang7()
 void PrintLoanDetails(double Loan, double LoanTime, double InterestRate, double AdvancePayment) {
     double Total = 0, PrincipalPayable, InterestPayable, AmountPayable, RemainingAmount;
     int i;
@@ -60,10 +61,11 @@ void PrintLoanDetails(double Loan, double LoanTime, double InterestRate, double 
         Loan -= PrincipalPayable; //Cập nhật số dư nợ
         Total += AmountPayable;   //Cộng tổng số tiền đã trả
     }
-
+    //In tổng tiền cần phải trả (gồm lãi và gốc)
     printf("\nTotal amount payable: %.2lf VND\n", Total);
 }
 
+//Kiểm tra số nguyên
 void ChucNang1() {
     float x;  
     int i, count = 0;
@@ -105,6 +107,7 @@ void ChucNang1() {
     }
 }
 
+//Tìm ước số chung và bội số chung
 void ChucNang2() {
     int a, b, bcnn, ucln, c, d;
     
@@ -144,6 +147,7 @@ void ChucNang2() {
 
 }
 
+//Tính tiền cho quán Karaoke
 void ChucNang3() {
     int StartTime, EndTime, UseTime;
     double Total;
@@ -167,7 +171,7 @@ void ChucNang3() {
             //Dữ liệu hợp lệ, thoát khỏi vòng lặp
             break;
         }
-    } while (1); //Lặp lại cho đến khi dữ liệu hợp lệ
+    } while (1); //Lặp lại cho đến khi dữ liệu hợp lệ (đúng = 0)
 
     //Tính thời gian sử dụng
     UseTime = EndTime - StartTime;
@@ -185,13 +189,14 @@ void ChucNang3() {
     }
     
     //In tổng tiền
-    printf("\n===== FPOLY Karaoke =====\n");
+    printf("\n========== FPOLY Karaoke ==========\n");
     printf("Start Time: %d:00\n", StartTime);
     printf("End Time: %d:00\n", EndTime);
     printf("Usage Time: %d hour(s)\n", UseTime);
     printf("Total payment : %.2lf VND\n", Total);
 }
 
+//Tính tiền điện
 void ChucNang4() {
     float kW, Total = 0; 
 
@@ -228,6 +233,7 @@ void ChucNang4() {
     printf("Your total bill is: %.2f thousand VND\n", Total);
 }
 
+//Đổi tiền tệ
 void ChucNang5() {
     int Amount, Count[9] = {0}, Bills[] = {500, 200, 100, 50, 20, 10, 5, 2, 1}, i;
 
@@ -252,6 +258,7 @@ void ChucNang5() {
     }    
 }
 
+//Tính lãi xuất vay ngân hàng trả góp
 void ChucNang6() {
     double Loan = 0, LoanTime = 0, Interest = 0;
 
@@ -281,6 +288,7 @@ void ChucNang6() {
     PrintLoanDetails(Loan, LoanTime, Interest, 0);
 }
 
+//Vay Tiền mua xe
 void ChucNang7() {
     double Loan = 0, LoanTime = 0, Interest = 0, PrepaymentPercentage = 0, AdvancePayment = 0;
 
@@ -322,6 +330,7 @@ void ChucNang7() {
 
 }
 
+//Sắp xếp thông tin sinh viên
 void ChucNang8() {
     float Score;
 
@@ -359,10 +368,12 @@ void ChucNang8() {
 
 }
 
+//FPOLY - LOTT
 void ChucNang9() {
     int Number1, Number2, RandomNumber1, RandomNumber2, Match = 0, Valid = 0;
-    float Probability;
     char PlayAgain;
+
+    printf("\n=============== WELCOME TO FPOLY - LOTT ===============\n");
 
     do {
         //Tạo một bộ số ngẫu nhiên mỗi lần chạy chương trình
@@ -385,7 +396,6 @@ void ChucNang9() {
             printf("Input number 1: ");
             if (scanf("%d", &Number1) != 1 || Number1 < 1 || Number1 > 15) {
                 printf("InValid input. Please enter a number between 1 and 15.\n");
-                while (getchar() != '\n'); //Xóa ký tự thừa
                 Valid = 1; //Đánh dấu nếu nhập không hợp lệ
                 continue;
             }
@@ -394,7 +404,6 @@ void ChucNang9() {
             printf("Input number 2: ");
             if (scanf("%d", &Number2) != 1 || Number2 < 1 || Number2 > 15) {
                 printf("InValid input. Please enter a number between 1 and 15.\n");
-                while (getchar() != '\n'); // Xóa ký tự thừa
                 Valid = 1; //Đánh dấu nếu nhập không hợp lệ
             } else {
                 Valid = 0; //Đánh dấu nhập hợp lệ
@@ -422,9 +431,6 @@ void ChucNang9() {
             printf("\nBetter luck next time!");
         }
 
-        Probability = (float)Match / 2 * 100;
-        printf("\nYou matched %d number(s). Your winning probability is %.2f%%.\n", Match, Probability);
-
         // Hỏi người chơi có muốn chơi lại không
         printf("Do you want to play again? (Y/N): ");
         while (getchar() != '\n'); // Xóa ký tự thừa
@@ -436,6 +442,7 @@ void ChucNang9() {
 
 }
 
+//Tính phân số
 void ChucNang10() {
     float tuX, mauX , tuY, mauY, tuA, mauA, tuB, mauB, tuC, mauC, tuD, mauD;
 
@@ -479,6 +486,7 @@ void ChucNang10() {
     printf("\n\t%g\t\t%g\t\t%g\t\t\t%g", mauA, mauB, mauC, mauD);
 }
 
+//Giới thiệu trương trình
 void GioiThieu() {
     int select;
 
@@ -530,6 +538,7 @@ void GioiThieu() {
         }  
 }
 
+//Menu lựa chon trương trình sử dụng
 void Menu () {
     system("cls");
     int select;

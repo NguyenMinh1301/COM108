@@ -4,9 +4,8 @@
 
 int main() {
     char s[100];
-    int valid;  //Biến để kiểm tra tính hợp lệ của chuỗi
+    int valid;
 
-    //In một đường kẻ đẹp trước khi bắt đầu
     printf("\n\t\t=============================================================================\n");
     printf("\t\t\t\tWelcome to the Vowel and Consonant Counter Program\n");
     printf("\t\t=============================================================================\n");
@@ -14,13 +13,11 @@ int main() {
     //Sử dụng vòng lặp do-while để yêu cầu người dùng nhập lại nếu nhập sai
     do {
         printf("\n\t\tPlease enter a string: ");
-        fgets(s, sizeof(s), stdin);  //Đọc chuỗi từ người dùng
-
-        //Loại bỏ ký tự newline '\n' nếu có
-        size_t len = strlen(s);
-        if (s[len - 1] == '\n') {
-            s[len - 1] = '\0';
+        if (scanf(" %[^\n]", s) != 1) {  
+            valid = 0;
+            continue;
         }
+        getchar();  //Loại bỏ ký tự newline còn sót lại
 
         valid = 1;  //Mặc định là chuỗi hợp lệ
 
@@ -31,7 +28,7 @@ int main() {
                 break;
             }
         }
-
+    
         //Nếu chuỗi không hợp lệ, thông báo lỗi và yêu cầu nhập lại
         if (!valid) {
             printf("\n\t\tError: The input contains digits. Please enter a valid string.\n");
@@ -47,7 +44,7 @@ int main() {
     for (int i = 0; s[i] != '\0'; i++) {
         char ch = tolower(s[i]);  //Chuyển ký tự thành chữ thường
 
-        //Kiểm tra xem ký tự có phải nguyên âm không
+        // Kiểm tra xem ký tự có phải nguyên âm không
         if (ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u') {
             n++;  //Tăng số lượng nguyên âm lên 1
         }

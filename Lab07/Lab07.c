@@ -19,13 +19,13 @@ void ChucNang1() {
     //Sử dụng vòng lặp do-while để yêu cầu người dùng nhập lại nếu nhập sai
     do {
         printf("\n\t\tPlease enter a string: ");
-        if (scanf("99[^\n]", s) != 1) {  
+        if (scanf(" %[^\n]", s) != 1) {  
             valid = 0;
             continue;
         }
         getchar();  //Loại bỏ ký tự newline còn sót lại
 
-        valid = 1;  // Mặc định là chuỗi hợp lệ
+        valid = 1;  //Mặc định là chuỗi hợp lệ
 
         //Kiểm tra nếu chuỗi chứa chữ số
         for (int i = 0; s[i] != '\0'; i++) {
@@ -71,7 +71,8 @@ void ChucNang2() {
     struct User users[] = { 
         {"Minh", "123"}, 
         {"minhnqtv00291@gmail.com", "123"},
-        {"NguyenMinh", "123"}
+        {"NguyenMinh", "123"},
+        {"Admin","123"}
     };
 
     int numUsers = sizeof(users) / sizeof(users[0]);
@@ -90,7 +91,7 @@ void ChucNang2() {
     if (scanf("%49s", username) != 1) { 
         //Nếu không đọc được username, xóa bộ đệm và yêu cầu nhập lại
         while (getchar() != '\n');
-        return 0;
+        return;
     }
     getchar(); 
 
@@ -98,7 +99,7 @@ void ChucNang2() {
     if (scanf("%49s", password) != 1) {  //Đọc password từ người dùng
         //Nếu không đọc được password, xóa bộ đệm và yêu cầu nhập lại
         while (getchar() != '\n');
-        return 0;
+        return;
     }
     getchar();
 
@@ -121,15 +122,25 @@ void ChucNang2() {
 
 }
 void ChucNang3() {
-    char s[5][20];  //Tạo mảng chứa 5 chuỗi
-    int i, j;
+    int i, j, x;
+
+    //Mời người dùng nhập độ dài của một số
+    printf("\n\t\t=============================================================================\n");
+    printf("\t\t\tInput long array: \n");
+    if (scanf("%d", &x) != 1 || x <= 0 || x > 999) {
+        printf("\t\tInvalid number! Returning to the main menu.\n");
+        getchar();  // Loại bỏ ký tự thừa trong bộ đệm
+        return;
+    }
+
+    char s[x][20];  //Tạo mảng chứa 5 chuỗi
     char temp[20];  //Biến tạm để hoán vị chuỗi
 
-    //Nhập 5 chuỗi từ bàn phím
+    //Nhập chuỗi từ bàn phím
     printf("\n\t\t=============================================================================\n");
-    printf("\t\t\tInput 5 array:\n");
+    printf("\t\t\tInput %d array: \n", x);
     printf("\t\t=============================================================================\n");
-    for (i = 0; i < 5; i++) {
+    for (i = 0; i < x; i++) {
         printf("\t\tNhap chuoi %d: ", i + 1);
         if (scanf("%19s", s[i]) != 1) {  //Đọc chuỗi từ người dùng
             //Nếu không đọc được chuỗi, xóa bộ đệm và yêu cầu nhập lại
@@ -141,8 +152,8 @@ void ChucNang3() {
     }
 
     //Sắp xếp mảng chuỗi theo thứ tự từ điển (Bubble Sort)
-    for (i = 0; i < 5 - 1; i++) {
-        for (j = 0; j < 5 - 1 - i; j++) {
+    for (i = 0; i < x - 1; i++) {
+        for (j = 0; j < x - 1 - i; j++) {
             if (strcmp(s[j], s[j + 1]) > 0) {
                 //Hoán vị các chuỗi nếu chúng không theo thứ tự từ điển
                 strcpy(temp, s[j]);
@@ -156,7 +167,7 @@ void ChucNang3() {
     printf("\n\t\t=============================================================================\n");
     printf("\t\t\tString list after sorting:\n");
     printf("\t\t=============================================================================\n");
-    for (i = 0; i < 5; i++) {
+    for (i = 0; i < x; i++) {
         printf("\t\t%s\n", s[i]);
     }
     printf("\n\t\t=============================================================================\n");
