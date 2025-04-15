@@ -126,7 +126,7 @@ Nếu bạn muốn đóng góp cho dự án, vui lòng tạo một **pull reques
 
 ## Thông Tin Liên Hệ
 Nếu bạn có bất kỳ câu hỏi hoặc ý kiến nào, vui lòng liên hệ:
-- **Họ và tên**: [Nguyễn Quang Minh](https://nguyenminh8.wordpress.com/)
+
 - **Email**: nguyenminh1301.dev@gmail.com
 - **GitHub**: [NguyenMinh1301](https://github.com/NguyenMinh1301)
 
